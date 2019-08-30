@@ -1,0 +1,77 @@
+{
+    "stats": {},
+    "api": {
+        "tag": "api",
+        "services": [
+            "StatsService"
+        ]
+    },
+    "policy": {
+        "levels": {
+            "0": {
+                "statsUserUplink": true,
+                "statsUserDownlink": true
+            }
+        },
+        "system": {
+            "statsInboundUplink": true,
+            "statsInboundDownlink": true
+        }
+    },
+    "inbounds": [
+        {
+            "tag": "ws",
+            "port": 28888,
+            "protocol": "vmess",
+	     "streamSettings": {
+        "network": "ws", 
+        "wsSettings": {
+          "path": "/download/"
+        }
+      },
+            "settings": {
+                "clients": [
+                    {
+                        "email": "ray",
+                        "id": "1",
+                        "level": 0,
+                        "alterId": 64
+                    }
+                 
+                ]
+            }
+        },
+        {
+            "listen": "127.0.0.1",
+            "port": 28889,
+            "protocol": "dokodemo-door",
+            "settings": {
+                "address": "127.0.0.1"
+            },
+	    
+      "tag": "api"
+        }
+	 
+    
+    ],  
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {}
+        }
+    ],
+    "routing": {
+        "settings": {
+            "rules": [
+                {
+                    "inboundTag": [
+                        "api"
+                    ],
+                    "outboundTag": "api",
+                    "type": "field"
+                }
+            ]
+        },
+        "strategy": "rules"
+    }   
+}
