@@ -1,5 +1,3 @@
-#wget --no-check-certificate -q -O fly.sh "https://raw.githubusercontent.com/Lightmani/Seetheworld/master/All%20In%20One?token=AKJ42JUQCGXUEZ746G24RZC6O774E" && chmod +x fly.sh && bash fly.sh
-
 
 
 
