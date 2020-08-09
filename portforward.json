@@ -1,0 +1,66 @@
+{
+    "stats": {},
+    "api": {
+        "tag": "api",
+        "services": [
+            "StatsService"
+        ]
+    },
+    "policy": {
+        "levels": {
+            "0": {
+                "statsUserUplink": true,
+                "statsUserDownlink": true
+            }
+        },
+        "system": {
+            "statsInboundUplink": true,
+            "statsInboundDownlink": true
+        }
+    },
+    "inbounds": [
+      {
+  "port": 1,
+  "listen": "0.0.0.0",
+  "protocol": "dokodemo-door",
+  "settings": {
+    "address": "1.1.1.1",
+    "port": 443,
+    "network": "tcp,udp"
+  },
+  "tag": "aws"
+},
+        {
+            "listen": "127.0.0.1",
+            "port": 28889,
+            "protocol": "dokodemo-door",
+            "settings": {
+                "address": "127.0.0.1"
+            },
+	    
+      "tag": "api"
+        }
+	 
+    
+    ],  
+    "outbounds": [
+        {
+            "protocol": "freedom",
+            "settings": {}
+        }
+    ],
+    "routing": {
+        "settings": {
+            "rules": [
+                {
+                    "inboundTag": [
+                        "api"
+                    ],
+                    "outboundTag": "api",
+                    "type": "field"
+                }
+            ]
+        },
+        "strategy": "rules"
+    }   
+}
